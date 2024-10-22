@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"unsafe"
+
+	"github.com/shopspring/decimal"
 )
 
 func main() {
@@ -34,4 +36,18 @@ func main() {
 	var f3 = 3.14e-2 // 表示f2等于 3.14 / 10^2
 	fmt.Printf("%v--%T\n", f3, f3)
 	fmt.Println("------------------------------------------")
+
+	// float 精度丢失问题
+	var f4 float64 = 1129.6
+	fmt.Println(f4 * 100) // 112959.99999999999
+	fmt.Println("------------------------------------------")
+
+	var num1 float64 = 3.1
+	var num2 float64 = 4.2
+	fmt.Println(num1 + num2) // 7.300000000000001
+	// 解决精度丢失问题
+	// 初始化go.mod: go mod init 02_float_demo
+	// 安装decimal包: go get github.com/shopspring/decimal
+	d1 := decimal.NewFromFloat(num1).Add(decimal.NewFromFloat(num2))
+	fmt.Println(d1)
 }
