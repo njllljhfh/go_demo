@@ -78,4 +78,10 @@ func main() {
 	// s5 := s4[1:7] // 报错
 	s5 := s4[1:len(s)]
 	fmt.Println(s5) // [3 5 7 11 13]
+	fmt.Println("------------------------------------------")
+
+	// 使用make函数构造切片
+	var sliceA = make([]int, 4, 8)
+	fmt.Printf("s4=%v, 长度%d 容量%d\n", sliceA, len(sliceA), cap(sliceA))
+	fmt.Println("------------------------------------------")
 }
