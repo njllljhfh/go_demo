@@ -1,5 +1,7 @@
 package calc
 
+import "fmt"
+
 // 自定义的包
 
 // 首字母大写，才能被外部调用
@@ -14,4 +16,8 @@ func Add(x, y int) int {
 // 公有方法
 func Sub(x, y int) int {
 	return x - y
+}
+
+func init() {
+	fmt.Println("calc init...")
 }
