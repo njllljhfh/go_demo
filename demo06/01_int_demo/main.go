@@ -38,9 +38,9 @@ func main() {
 	fmt.Println("------------------------------------------")
 
 	num6 := 18
-	fmt.Printf("num6=%v\n", num6) //%v 原样输出
-	fmt.Printf("num6=%d\n", num6) //%d 十进制输出
-	fmt.Printf("num6=%b\n", num6) //%d 二进制输出
-	fmt.Printf("num6=%o\n", num6) //%d 八进制输出
-	fmt.Printf("num6=%x\n", num6) //%d 十六进制输出
+	fmt.Printf("num6=%v\n", num6) // %v 原样输出
+	fmt.Printf("num6=%d\n", num6) // %d 十进制输出
+	fmt.Printf("num6=%b\n", num6) // %d 二进制输出
+	fmt.Printf("num6=%o\n", num6) // %d 八进制输出
+	fmt.Printf("num6=%x\n", num6) // %d 十六进制输出
 }

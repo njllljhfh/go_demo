@@ -8,10 +8,10 @@ import (
 func main() {
 	// 1.Go中定义字符，字符属于int32类型
 	var a = 'a'
-	fmt.Printf("值：%v，类型：%T\n", a, a) //值：97，类型：int32
+	fmt.Printf("值：%v，类型：%T\n", a, a) // 值：97，类型：int32
 
 	// 原样输出字符
-	fmt.Printf("值：%c，类型：%T\n", a, a) //值：a，类型：int32
+	fmt.Printf("值：%c，类型：%T\n", a, a) // 值：a，类型：int32
 	fmt.Println("------------------------------------------")
 
 	// 输出字符串里的字符
@@ -19,9 +19,16 @@ func main() {
 	fmt.Printf("值：%v，原样输出：%c，类型：%T\n", str[2], str[2], str[2]) // 值：105，类型：uint8
 
 	// 一个汉字占用3个字节（utf-8） 一个字母占用1个字节
-	str2 := "this" //占用4个字节
+	str2 := "this" // "this"字符串，占用4个字节
 	// unsafe.Sizeof()无法查看string类型数据的长度，只能查看变量的大小
-	fmt.Println(unsafe.Sizeof(str2)) // 16
+	/*
+		string的数据结构
+		type stringStruct struct {
+		    str unsafe.Pointer // 字符串数据的起始地址
+		    len int            // 字符串的长度
+		}
+	*/
+	fmt.Println(unsafe.Sizeof(str2)) // 字符串变量占用内存大小为：16字节(在64位的电脑上)
 	fmt.Println(len(str2))           // 4
 	fmt.Println("------------------------------------------")
 
@@ -56,9 +63,9 @@ func main() {
 	}
 	fmt.Println("------------------------------------------")
 
-	//修改字符串中的字符
-	//要修改字符串，需要先将其转换成[]rune或[]byte，完成后再转换为string。
-	//无论哪种转换，都会重新分配内存，并复制字节数组。
+	// 修改字符串中的字符
+	// 要修改字符串，需要先将其转换成[]rune或[]byte，完成后再转换为string。
+	// 无论哪种转换，都会重新分配内存，并复制字节数组。
 	s1 := "big"
 	// 强制类型转换
 	byteS1 := []byte(s1)
