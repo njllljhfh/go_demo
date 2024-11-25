@@ -1,9 +1,9 @@
 package main
 
 import (
-    "fmt"
-    "sync"
-    "time"
+	"fmt"
+	"sync"
+	"time"
 )
 
 /*
@@ -21,22 +21,22 @@ var wg sync.WaitGroup
 var mutex sync.Mutex
 
 func test() {
-    // 加锁
-    mutex.Lock()
-    count++
-    fmt.Printf("the count is %d\n", count)
-    time.Sleep(time.Millisecond)
-    // 释放锁
-    mutex.Unlock()
-    wg.Done()
+	// 加锁
+	mutex.Lock()
+	count++
+	fmt.Printf("the count is %d\n", count)
+	time.Sleep(time.Millisecond)
+	// 释放锁
+	mutex.Unlock()
+	wg.Done()
 }
 
 func main() {
-    for r := 0; r < 20; r++ {
-        wg.Add(1)
-        go test()
-    }
+	for r := 0; r < 20; r++ {
+		wg.Add(1)
+		go test()
+	}
 
-    wg.Wait()
-    fmt.Printf("main() --- the count is %d\n", count)
+	wg.Wait()
+	fmt.Printf("main() --- the count is %d\n", count)
 }
