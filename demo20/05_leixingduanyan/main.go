@@ -7,60 +7,60 @@ import "fmt"
 */
 
 type Usber interface {
-	start()
-	stop()
+    start()
+    stop()
 }
 
-// 电脑
+// Computer 电脑
 type Computer struct {
 }
 
 func (c Computer) work(usb Usber) {
-	// 类型断言: 判断 usb 的类型
-	if _, ok := usb.(Phone); ok {
-		usb.start()
-	} else {
-		usb.stop()
-	}
+    // 类型断言: 判断 usb 的类型
+    if _, ok := usb.(Phone); ok {
+        usb.start()
+    } else {
+        usb.stop()
+    }
 }
 
-// 手机
+// Phone 手机
 type Phone struct {
-	Name string
+    Name string
 }
 
 func (p Phone) start() {
-	fmt.Printf("%v, 启动\n", p.Name)
+    fmt.Printf("%v, 启动\n", p.Name)
 }
 func (p Phone) stop() {
-	fmt.Printf("%v, 关机\n", p.Name)
+    fmt.Printf("%v, 关机\n", p.Name)
 }
 
-// 相机
+// Camera 相机
 type Camera struct {
 }
 
 func (c Camera) start() {
-	fmt.Printf("相机启动\n")
+    fmt.Printf("相机启动\n")
 }
 
 func (c Camera) stop() {
-	fmt.Printf("相机关机\n")
+    fmt.Printf("相机关机\n")
 }
 
 func (c Camera) run() {
-	fmt.Println("相机运行")
+    fmt.Println("相机运行")
 }
 
 func main() {
-	computer := Computer{}
+    computer := Computer{}
 
-	phone := Phone{
-		Name: "小米手机",
-	}
+    phone := Phone{
+        Name: "小米手机",
+    }
 
-	camera := Camera{}
+    camera := Camera{}
 
-	computer.work(phone)
-	computer.work(camera)
+    computer.work(phone)
+    computer.work(camera)
 }

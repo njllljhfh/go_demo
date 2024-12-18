@@ -7,50 +7,50 @@ import "fmt"
 */
 
 type Animaler interface {
-	SetName(string)
-	GetName() string
+    SetName(string)
+    GetName() string
 }
 
 type Dog struct {
-	Name string
+    Name string
 }
 
 func (d *Dog) SetName(name string) {
-	d.Name = name
+    d.Name = name
 }
 
 func (d Dog) GetName() string {
-	return d.Name
+    return d.Name
 }
 
 type Cat struct {
-	Name string
+    Name string
 }
 
 func (c *Cat) SetName(name string) {
-	c.Name = name
+    c.Name = name
 }
 
 func (c Cat) GetName() string {
-	return c.Name
+    return c.Name
 }
 
 func main() {
 
-	d := &Dog{
-		Name: "小黑",
-	}
-	var d1 Animaler = d
-	fmt.Println(d1.GetName())
-	d1.SetName("小白")
-	fmt.Println(d1.GetName())
-	fmt.Println("------------------------")
+    d := &Dog{
+        Name: "小黑",
+    }
+    var d1 Animaler = d
+    fmt.Println(d1.GetName())
+    d1.SetName("小白")
+    fmt.Println(d1.GetName())
+    fmt.Println("------------------------")
 
-	c := &Cat{
-		Name: "小花",
-	}
-	var c1 Animaler = c
-	fmt.Println(c1.GetName())
-	c1.SetName("小红")
-	fmt.Println(c1.GetName())
+    c := &Cat{
+        Name: "小花",
+    }
+    var c1 Animaler = c
+    fmt.Println(c1.GetName())
+    c1.SetName("小红")
+    fmt.Println(c1.GetName())
 }
