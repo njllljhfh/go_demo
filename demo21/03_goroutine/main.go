@@ -1,16 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"runtime"
+    "fmt"
+    "runtime"
 )
 
 func main() {
-	// 获取当前计算机上面的CPU数量
-	cupNum := runtime.NumCPU()
-	fmt.Println("cupNum=", cupNum)
+    // 获取当前计算机上面的CPU数量
+    cpuNum := runtime.NumCPU()
+    fmt.Println("cpuNum=", cpuNum)
 
-	// 可以自己设置只用多个cpu
-	runtime.GOMAXPROCS(cupNum - 1)
-	fmt.Println("ok")
+    // 可以自己设置用几个cpu
+    runtime.GOMAXPROCS(cpuNum - 1)
+    fmt.Println("ok")
 }

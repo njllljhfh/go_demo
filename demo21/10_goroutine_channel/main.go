@@ -1,24 +1,26 @@
 package main
 
 import (
-	"fmt"
-	"sync"
-	"time"
+    "fmt"
+    "sync"
+    "time"
 )
 
 /*
    管道 channel:
 */
 
+const n = 10
+
 // fn1 写数据
 func fn1(ch chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for i := 0; i < 10; i++ {
-		ch <- i
-		fmt.Printf("[写入]数据 %v 成功\n", i)
-		time.Sleep(time.Millisecond * 500)
-	}
-	close(ch)
+    defer wg.Done()
+    for i := 0; i < n; i++ {
+        ch <- i
+        fmt.Printf("[写入]数据 %v 成功\n", i)
+        time.Sleep(time.Millisecond * 500)
+    }
+    close(ch)
 }
 
 /*
@@ -37,26 +39,34 @@ func fn1(ch chan int, wg *sync.WaitGroup) {
 
 // fn2 读数据
 func fn2(ch chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	// 这里读取速度比写入速度快，读取时会等待下一个数据写入
-	for v := range ch {
-		fmt.Printf("[读取]数据 %v 成功\n", v)
-		time.Sleep(time.Millisecond * 10)
-	}
+    defer wg.Done()
+    // 这里读取速度比写入速度快，读取时会等待下一个数据写入
+    for v := range ch {
+        fmt.Printf("[读取]数据 %v 成功\n", v)
+        time.Sleep(time.Millisecond * 10)
+    }
+
+    // 在写入数据到 ch 的函数中没有关闭ch的情况下，用 普通的for循环，当 ch中没有数据后，再从ch读数据，一样会报错
+    // var v int
+    // for i := 0; i < n+10; i++ {
+    //     v = <-ch
+    //     fmt.Printf("[读取]数据 %v 成功\n", v)
+    //     time.Sleep(time.Millisecond * 10)
+    // }
 }
 
 func main() {
-	// var wg *sync.WaitGroup
-	// wg = new(sync.WaitGroup)
-	wg := &sync.WaitGroup{}
+    // var wg *sync.WaitGroup
+    // wg = new(sync.WaitGroup)
+    wg := &sync.WaitGroup{}
 
-	ch := make(chan int, 10)
+    ch := make(chan int, 10)
 
-	wg.Add(1)
-	go fn1(ch, wg)
-	wg.Add(1)
-	go fn2(ch, wg)
-	wg.Wait()
+    wg.Add(1)
+    go fn1(ch, wg)
+    wg.Add(1)
+    go fn2(ch, wg)
+    wg.Wait()
 
-	fmt.Println("-----------------------")
+    fmt.Println("-----------------------")
 }
