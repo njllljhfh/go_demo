@@ -46,7 +46,7 @@ func fn2(ch chan int, wg *sync.WaitGroup) {
         time.Sleep(time.Millisecond * 10)
     }
 
-    // 在写入数据到 ch 的函数中没有关闭ch的情况下，用 普通的for循环，当 ch中没有数据后，再从ch读数据，一样会报错
+    // 在写入数据到 ch 的函数中没有关闭ch的情况下，用 普通的for循环，当 ch 中不会再有新数据被写入时，再从ch读数据，一样会报错
     // var v int
     // for i := 0; i < n+10; i++ {
     //     v = <-ch

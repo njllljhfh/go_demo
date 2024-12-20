@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"sync"
-	"time"
+    "fmt"
+    "sync"
+    "time"
 )
 
 /*
@@ -19,27 +19,27 @@ var m = make(map[int]int)
 var mutex sync.Mutex
 
 func test(num int) {
-	// 阶乘
-	sum := 1
-	for i := 1; i <= num; i++ {
-		sum *= i
-	}
+    // 阶乘
+    sum := 1
+    for i := 1; i <= num; i++ {
+        sum *= i
+    }
 
-	mutex.Lock()
-	m[num] = sum
-	mutex.Unlock()
+    mutex.Lock()
+    m[num] = sum
+    mutex.Unlock()
 
-	fmt.Printf("key=%v, value=%v\n", num, sum)
-	time.Sleep(time.Millisecond)
-	wg.Done()
+    fmt.Printf("key=%v, value=%v\n", num, sum)
+    time.Sleep(time.Millisecond)
+    wg.Done()
 }
 
 func main() {
-	// 资源竞争
-	for r := 0; r < 20; r++ {
-		wg.Add(1)
-		go test(r)
-	}
+    // 资源竞争
+    for r := 0; r < 20; r++ {
+        wg.Add(1)
+        go test(r)
+    }
 
-	wg.Wait()
+    wg.Wait()
 }
